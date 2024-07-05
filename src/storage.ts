@@ -40,7 +40,7 @@ export async function stored(): Promise<VoiceId[]> {
   for await (const name of dir.keys()) {
     const key = name.split('.')[0];
     if (name.endsWith('.onnx') && key in PATH_MAP) {
-      result.push(key);
+      result.push(key as VoiceId);
     }
   }
 

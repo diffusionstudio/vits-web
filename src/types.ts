@@ -33,7 +33,7 @@ export type ErrorMessage = {
 
 export type OutputMessage = {
   type: "output";
-  file: File;
+  file: Blob;
 }
 
 export type FetchMessage = {
@@ -42,6 +42,11 @@ export type FetchMessage = {
   total: number;
   loaded: number;
 }
+
+export type InferenceConfg = {
+  text: string,
+  voiceId: VoiceId
+};
 
 export type MessageData = ErrorMessage | OutputMessage | FetchMessage;
 

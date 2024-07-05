@@ -1,7 +1,7 @@
 {
   "name": "@diffusionstudio/vits-web",
   "private": false,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Web api for using VITS based models in the browser!",
   "type": "module",
   "files": [
@@ -20,6 +20,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:diffusion-studio/vits-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diffusion-studio/vits-web/issues"
+  },
+  "homepage": "https://github.com/diffusion-studio/vits-web#readme",
   "license": "MIT",
   "keywords": [
     "vits",
@@ -42,5 +50,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
     "vite-plugin-dts": "^3.9.1"
+  },
+  "dependencies": {
+    "onnxruntime-web": "^1.18.0"
   }
 }

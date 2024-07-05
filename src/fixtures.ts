@@ -1,9 +1,23 @@
 import { VoiceId } from "./types";
 
+/**
+ * Location of the ml models
+ */
 export const HF_BASE = 'https://huggingface.co/diffusionstudio/piper-voices/resolve/main';
-export const ONNX_BASE = "https://cdnjs.cloudflare.com/ajax/libs/onnxruntime-web/1.17.1";
+
+/**
+ * Inference runtime libary base path
+ */
+export const ONNX_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/onnxruntime-web/1.18.0/';
+
+/**
+ * Path to wasm related files
+ */
 export const WASM_BASE = "https://cdn.jsdelivr.net/npm/@diffusionstudio/piper-wasm@1.0.0/build/piper_phonemize";
 
+/**
+ * Path to ml models on huggingface
+ */
 export const PATH_MAP: Record<VoiceId, string> = {
   'ar_JO-kareem-low': 'ar/ar_JO/kareem/low/ar_JO-kareem-low.onnx',
   'ar_JO-kareem-medium': 'ar/ar_JO/kareem/medium/ar_JO-kareem-medium.onnx',

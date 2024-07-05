@@ -1,16 +1,16 @@
-import { MessageData, ProgressCallback, VoiceId } from "./types";
+import { InferenceConfg, MessageData, ProgressCallback } from "./types";
+import Worker from './worker.ts?worker'
 
-type PredictOptions = {
-  text: string,
-  voiceId: VoiceId
-};
+/**
+ * Run text to speech inference in new worker thread. Fetches the model
+ * first, if it has not yet been saved to opfs yet.
+ */
+export async function predict(config: InferenceConfg, callback?: ProgressCallback): Promise<Blob> {
+  const worker = new Worker()
 
-export async function predict(options: PredictOptions, callback?: ProgressCallback): Promise<File> {
-  const worker = new Worker(new URL('./worker.ts', import.meta.url));
+  worker.postMessage({ type: 'init', ...config });
 
-  worker.postMessage({ type: 'init', ...options });
-
-  return await new Promise<File>((resolve, reject) => {
+  return await new Promise<Blob>((resolve, reject) => {
     function eventHandler(event: MessageEvent<MessageData>) {
       const data = event.data;
 
