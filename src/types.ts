@@ -26,18 +26,7 @@ export type Voice = {
   aliases: string[]
 }
 
-export type ErrorMessage = {
-  type: "stderr";
-  message: string;
-}
-
-export type OutputMessage = {
-  type: "output";
-  file: Blob;
-}
-
-export type FetchMessage = {
-  type: "fetch";
+export type Progress = {
   url: string;
   total: number;
   loaded: number;
@@ -48,6 +37,4 @@ export type InferenceConfg = {
   voiceId: VoiceId
 };
 
-export type MessageData = ErrorMessage | OutputMessage | FetchMessage;
-
-export type ProgressCallback = (progress: Omit<FetchMessage, 'type'>) => void;
+export type ProgressCallback = (progress: Progress) => void;

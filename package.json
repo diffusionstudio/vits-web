@@ -44,14 +44,16 @@
   "scripts": {
     "dev": "vite",
     "build": "rm -r -f ./dist && tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "npx playwright test --project=chromium"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
-    "vite-plugin-dts": "^3.9.1"
+    "vite-plugin-dts": "^3.9.1",
+    "@playwright/test": "^1.35.1"
   },
-  "dependencies": {
+  "peerDependencies": {
     "onnxruntime-web": "^1.18.0"
   }
 }

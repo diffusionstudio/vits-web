@@ -12,7 +12,7 @@ export async function download(voiceId: VoiceId, callback?: ProgressCallback): P
   const urls = [`${HF_BASE}/${path}`, `${HF_BASE}/${path}.json`]
 
   await Promise.all(urls.map(async (url) => {
-    writeBlob(url, await fetchBlob(url, callback));
+    writeBlob(url, await fetchBlob(url, url.endsWith('.onnx') ? callback : undefined));
   }));
 }
 
@@ -51,11 +51,11 @@ export async function stored(): Promise<VoiceId[]> {
  * Delete the models directory
  */
 export async function flush() {
-  const root = await navigator.storage.getDirectory();
-  const dir = await root.getDirectoryHandle('piper', {
-    create: true,
-  });
-
-  // @ts-ignore
-  await dir.remove({ recursive: true });
+  try {
+    const root = await navigator.storage.getDirectory();
+    const dir = await root.getDirectoryHandle('piper'); // @ts-ignore
+    await dir.remove({ recursive: true });
+  } catch (e) {
+    console.error(e)
+  }
 }

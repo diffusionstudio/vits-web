@@ -12,7 +12,9 @@ export async function writeBlob(url: string, blob: Blob): Promise<void> {
     const writable = await file.createWritable();
     await writable.write(blob);
     await writable.close();
-  } catch (_) { }
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export async function removeBlob(url: string) {
@@ -21,8 +23,10 @@ export async function removeBlob(url: string) {
     const dir = await root.getDirectoryHandle('piper');
     const path = url.split('/').at(-1)!;
     const file = await dir.getFileHandle(path); // @ts-ignore
-    file.remove();
-  } catch (_) { }
+    await file.remove();
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export async function readBlob(url: string): Promise<Blob | undefined> {

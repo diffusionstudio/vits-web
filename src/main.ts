@@ -1,5 +1,7 @@
 import * as tts from './index';
 
+Object.assign(window, { tts });
+
 document.querySelector('#app')!.innerHTML = `
 <button id="btn" type="button">Predict</button>
 `
