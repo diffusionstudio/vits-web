@@ -12,13 +12,13 @@ A big shout-out goes to [Rhasspy Piper](https://github.com/rhasspy/piper), who o
 First of all, you need to install the library:
 ```bash
 npm i --save @diffusionstudio/vits-web
+
+// Hint: onnxruntime-web is a peer dependency
 ```
 
 Then you're able to import the library like this (ES only)
 ```typescript
 import * as tts from '@diffusionstudio/vits-web';
-
-// Hint: onnxruntime-web is a peer dependency
 ```
 
 Now you can start synthesizing speech!
