@@ -4,7 +4,7 @@
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/diffusion-studio/ffmpeg-js/blob/main/LICENSE)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 
-# Use VITS based text-to-speech in the browser powered by the [ONNX Runtime](https://onnxruntime.ai/)
+# Run VITS based text-to-speech in the browser powered by the [ONNX Runtime](https://onnxruntime.ai/)
 
 A big shout-out goes to [Rhasspy Piper](https://github.com/rhasspy/piper), who open-sourced all the currently available models (MIT License) and to [@jozefchutka](https://github.com/jozefchutka) who came up with the wasm build steps.
 
@@ -12,8 +12,6 @@ A big shout-out goes to [Rhasspy Piper](https://github.com/rhasspy/piper), who o
 First of all, you need to install the library:
 ```bash
 npm i --save @diffusionstudio/vits-web
-
-// Hint: onnxruntime-web is a peer dependency
 ```
 
 Then you're able to import the library like this (ES only)
