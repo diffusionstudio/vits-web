@@ -26,11 +26,11 @@ const wav = await tts.predict({
   voiceId: 'en_US-hfc_female-medium',
 });
 
-// available in Web Worker
-
 const audio = new Audio();
 audio.src = URL.createObjectURL(wav);
 audio.play();
+
+// as seen in /example with Web Worker
 ```
 
 With the initial run of the predict function you will download the model which will then be stored in your [Origin private file system](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system). You can also do this manually in advance *(recommended)*, as follows:
