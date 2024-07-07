@@ -19,6 +19,7 @@ export async function predict(config: InferenceConfg, callback?: ProgressCallbac
   const piperPhonemizeWasm = (await createBlobUrl(`${WASM_BASE}.wasm`)).url;
   const piperPhonemizeData = (await createBlobUrl(`${WASM_BASE}.data`)).url;
 
+  ort.env.allowLocalModels = false;
   ort.env.wasm.numThreads = navigator.hardwareConcurrency;
   ort.env.wasm.wasmPaths = ONNX_BASE;
 
