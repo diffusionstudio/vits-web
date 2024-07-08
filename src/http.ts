@@ -1,37 +1,29 @@
 import { ProgressCallback } from "./types";
 
 export async function fetchBlob(url: string, callback?: ProgressCallback): Promise<Blob> {
-  return await new Promise((resolve) => {
-    let xContentLength: number;
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = "blob";
-    xhr.onprogress = event => {
-      callback?.({
-        url,
-        total: xContentLength ?? event.total,
-        loaded: event.loaded
-      })
+  const res = await fetch(url)
+
+  const reader = res.body?.getReader();
+  const contentLength = +(res.headers.get('Content-Length') ?? 0);
+
+  let receivedLength = 0;
+  let chunks = [];
+  while (true && reader) {
+    const { done, value } = await reader.read();
+
+    if (done) {
+      break;
     }
 
-    xhr.onreadystatechange = () => {
-      if (
-        xhr.readyState >= xhr.HEADERS_RECEIVED
-        && xContentLength == undefined
-        && xhr.getAllResponseHeaders().includes("x-content-length")
-      ) {
-        xContentLength = Number(xhr.getResponseHeader("x-content-length"));
-      }
+    chunks.push(value);
+    receivedLength += value.length;
 
-      if (xhr.readyState === xhr.DONE) {
-        callback?.({
-          url,
-          total: xContentLength,
-          loaded: xContentLength
-        })
-        resolve(xhr.response);
-      }
-    }
-    xhr.open("GET", url);
-    xhr.send();
-  })
+    callback?.({
+      url,
+      total: contentLength,
+      loaded: receivedLength,
+    });
+  }
+
+  return new Blob(chunks, { type: res.headers.get('Content-Type') ?? undefined })
 };
