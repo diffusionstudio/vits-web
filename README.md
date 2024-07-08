@@ -11,7 +11,7 @@ A big shout-out goes to [Rhasspy Piper](https://github.com/rhasspy/piper), who o
 ## Usage
 First of all, you need to install the library:
 ```bash
-npm i --save @diffusionstudio/vits-web
+npm i @diffusionstudio/vits-web
 ```
 
 Then you're able to import the library like this (ES only)
