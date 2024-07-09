@@ -359,12 +359,13 @@ async function voices() {
   return Object.values(await res.json());
 }
 
+const text = "Text to speech in the browser is amazing!";
 const select = document.querySelector("select");
 const audio = document.querySelector("audio");
 const textarea = document.querySelector("textarea");
 const button = document.querySelector("button");
 const a = document.querySelector("a");
-
+textarea.placeholder = text;
 const entries = Object.entries(PATH_MAP);
 
 for (let i = 0; i < entries.length + 1; i++) {
@@ -389,7 +390,7 @@ select.addEventListener("change", async (e) => {
     await download(value);
     const wav = await predict({
       text: textarea.value.trim() ||
-        "Text to speech in the browser is amazing!",
+        text,
       voiceId: value,
     });
     if (blobURL?.length) {
