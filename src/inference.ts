@@ -5,7 +5,7 @@ import { fetchBlob } from './http.js';
 import { pcm2wav } from './audio';
 
 let module: typeof import('./piper.js');
-let ort: typeof import('onnxruntime-web/webgpu');
+let ort: typeof import('onnxruntime-web');
 
 /**
  * Run text to speech inference in new worker thread. Fetches the model
@@ -13,7 +13,7 @@ let ort: typeof import('onnxruntime-web/webgpu');
  */
 export async function predict(config: InferenceConfg, callback?: ProgressCallback): Promise<Blob> {
 	module = module ?? (await import('./piper.js'));
-	ort = ort ?? (await import('onnxruntime-web/webgpu'));
+	ort = ort ?? (await import('onnxruntime-web'));
 
 	const path = PATH_MAP[config.voiceId];
 	const input = JSON.stringify([{ text: config.text.trim() }]);
