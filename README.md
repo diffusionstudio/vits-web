@@ -1,5 +1,5 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/diffusion-studio/ffmpeg-js/graphs/commit-activity)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://diffusion.studio)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://huggingface.co/spaces/diffusionstudio/vits-web)
 [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/n3mpzfejAb)
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/diffusion-studio/ffmpeg-js/blob/main/LICENSE)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
