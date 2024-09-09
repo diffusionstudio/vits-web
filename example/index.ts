@@ -8,8 +8,9 @@ document.querySelector('#app')!.innerHTML = `
 <button id="btn" type="button">Predict</button>
 `
 
+const worker = new Worker();
+
 document.getElementById('btn')?.addEventListener('click', async () => {
-  const worker = new Worker();
 
   worker.postMessage({
     type: 'init',
@@ -23,6 +24,5 @@ document.getElementById('btn')?.addEventListener('click', async () => {
     const audio = new Audio();
     audio.src = URL.createObjectURL(event.data.audio);
     audio.play();
-    worker.terminate();
   });
 });
