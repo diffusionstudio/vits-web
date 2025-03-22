@@ -9,9 +9,25 @@ export async function writeBlob(url: string, blob: Blob): Promise<void> {
 
 		const path = url.split('/').at(-1)!;
 		const file = await dir.getFileHandle(path, { create: true });
-		const writable = await file.createWritable();
-		await writable.write(blob);
-		await writable.close();
+		if (file.createWritable) {
+			const writable = await file.createWritable();
+			await writable.write(blob);
+			await writable.close();
+		} else if (self.WorkerGlobalScope) {
+			console.log(
+				'createWritable not supported, trying syncronous API with createSyncAccessHandle as we are a worker',
+			);
+			// use the synchronous write API to write to the file. Only works in web workers
+			const writer = await file.createSyncAccessHandle();
+			writer.write(await blob.arrayBuffer());
+			writer.close();
+		} else {
+			console.error(
+				"Cannot write to OPFS file using createWritable and we are not a worker, so can't use createSyncAccessHandle",
+			);
+			// Remove the empty file
+			await dir.removeEntry(path);
+		}
 	} catch (e) {
 		console.error(e);
 	}
